@@ -17,24 +17,10 @@ namespace MilkiPsyBackend
         public virtual void Tick() { }
         public virtual void Stop() { }
 
-        protected void SendFeedback(string uniqueFeedbackName, bool goNext)
+        protected void SendMessage(IMessageData messageData, bool ignoreMessageIfStateOutdated = true)
         {
-            FeedbackMessage message = new FeedbackMessage
-            {
-                currentState = stateListener.State,
-                uniqueFeedbackName = uniqueFeedbackName,
-                goToNextStage = goNext
-            };
-
-            string messageText = JsonConvert.SerializeObject(message);
-            server.SendMessageToClient(messageText);
+            using ToClientPacket packet = new(messageData, stateListener.State, ignoreMessageIfStateOutdated);
+            server.SendPacketToClient(packet);
         }
-    }
-
-    struct FeedbackMessage
-    {
-        public ClientState currentState;
-        public bool goToNextStage;
-        public string uniqueFeedbackName;
     }
 }

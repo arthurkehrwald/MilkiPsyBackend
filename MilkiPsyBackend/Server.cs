@@ -28,17 +28,13 @@ namespace MilkiPsyBackend
             Console.WriteLine($"[Server] Server started on port {Port}");
         }
 
-        public void SendMessageToClient(string msg)
+        public void SendPacketToClient(Packet packet)
         {
             if (client == null)
             {
                 Console.WriteLine("[Server] Cannot send message, because no client is connected");
-                return;
             }
 
-            using Packet packet = new();
-            packet.Write(msg);
-            packet.WriteLength();
             try
             {
                 stream.BeginWrite(packet.ToArray(), 0, packet.Length(), null, null);
@@ -79,7 +75,6 @@ namespace MilkiPsyBackend
             stream.BeginRead(receiveBuffer, 0, receiveBuffer.Length, ReceiveCallback, null);
 
             Console.WriteLine($"[Server] Connected to client ({client.Client.RemoteEndPoint})");
-            SendMessageToClient("Helo wasup");
         }
 
         private void DisconnectFromClient()
