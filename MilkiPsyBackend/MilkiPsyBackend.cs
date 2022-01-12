@@ -20,7 +20,7 @@ namespace MilkiPsyBackend
             server.Start();
             ClientStateMessageReceiver clientStatus = new(server);
             evaluationManager = new(server, clientStatus);
-            Console.ReadKey();
+
         }
 
         private static void MainThread()
