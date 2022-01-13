@@ -1,4 +1,4 @@
-# MilkiPsyBackend
+# Milki-Psy Backend
 
 This repository contains a C# console backend for testing this [Unity frontend](https://github.com/arthurkehrwald/MilkiPsyFrontend) for psychomotor training applications. It can connect to the frontend via TCP, receive status updates and send messages from a command line interface that trigger responses on the client. This code is meant to be used as a reference (not as a basis) for a more sophisticated backend capable of analysing real-time sensor data of the user to drive the learning process.
 
