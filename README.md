@@ -4,6 +4,8 @@ This repository contains a C# console backend for testing this [Unity frontend](
 
 The netcode is based on [this](https://github.com/tom-weiland/tcp-udp-networking). I have no prior experience writing netcode so assume there are bugs everywhere.
 
+The program listens for connections on port 13000.
+
 ## Command Line Interface
 
 Since no automated evaluation exists at the moment, messages can only be sent manually from the command line. There are three commands:
